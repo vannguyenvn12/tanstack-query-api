@@ -6,12 +6,23 @@ import { errorMiddleware } from '../middleware/errors.js';
 const router = express.Router();
 
 // Apply delay and random error middleware
-router.use(delayMiddleware(2000, 5000));
+router.use(delayMiddleware(1000, 2500));
 // router.use(errorMiddleware(0.03)); // 3% error rate
 
 // GET /api/users - Get all users
 router.get('/', (req, res) => {
   res.json(users);
+});
+
+// GET /api/users/me - Get current user
+router.get('/me', (req, res) => {
+  const user = users.find((u) => u.id === 1);
+
+  if (!user) {
+    return res.status(404).json({ error: 'User not found' });
+  }
+
+  res.json(user);
 });
 
 // GET /api/users/:id - Get user by ID

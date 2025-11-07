@@ -11,8 +11,21 @@ import { errorMiddleware } from '../middleware/errors.js';
 
 const router = express.Router();
 
-router.use(delayMiddleware(2000, 5000));
-router.use(errorMiddleware(0.04)); // 4% error rate
+router.use(delayMiddleware(1000, 2500));
+// router.use(errorMiddleware(0.04)); //  4% error rate
+
+// GET /api/projects/users/:id - Get projects by user ID
+router.get('/users/:userId', (req, res) => {
+  const id = parseInt(req.params.userId);
+
+  if (!id) {
+    return res.status(404).json({ error: 'User not found' });
+  }
+
+  const results = projects.filter((p) => p.ownerId === id);
+
+  res.json(results);
+});
 
 // GET /api/projects - Get all projects
 router.get('/', (req, res) => {
