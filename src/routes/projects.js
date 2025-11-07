@@ -55,7 +55,51 @@ router.get('/:id', (req, res) => {
   res.json(project);
 });
 
-// GET /api/projects/:id/tasks - Get tasks for a project (dependent query demo)
+// GET /api/projects/:id/page-tasks - Get project by ID
+router.get('/:id/page-tasks', (req, res) => {
+  const id = parseInt(req.params.id);
+  const project = projects.find((p) => p.id === id);
+
+  if (!project) {
+    return res.status(404).json({ error: 'Project not found' });
+  }
+
+  const projectTasks = tasks.filter((t) => t.projectId === id);
+
+  const page = parseInt(req.query.page) || 1;
+  const limit = parseInt(req.query.limit) || 10;
+
+  if (page <= 0 || limit <= 0) {
+    return res
+      .status(400)
+      .json({ error: 'Page and limit must be positive numbers' });
+  }
+
+  const totalItems = projectTasks.length;
+  const totalPages = Math.ceil(totalItems / limit);
+
+  if (page > totalPages && totalPages > 0) {
+    return res.status(200).json({
+      totalItems,
+      totalPages,
+      currentPage: page,
+      items: [],
+    });
+  }
+
+  const start = (page - 1) * limit;
+  const end = start + limit;
+  const items = projectTasks.slice(start, end);
+
+  res.json({
+    totalItems,
+    totalPages,
+    currentPage: page,
+    items,
+  });
+});
+
+// GET /api/projects/:id/tasks - Get tasks for a project
 router.get('/:id/tasks', (req, res) => {
   const id = parseInt(req.params.id);
   const project = projects.find((p) => p.id === id);
