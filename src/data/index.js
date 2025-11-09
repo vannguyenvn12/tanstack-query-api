@@ -37,52 +37,52 @@ export const projects = [
   },
 ];
 
-// export const tasks = [
-//   {
-//     id: 1,
-//     projectId: 1,
-//     title: 'Design user authentication flow',
-//     status: 'in-progress',
-//     assigneeId: 1,
-//   },
-//   {
-//     id: 2,
-//     projectId: 1,
-//     title: 'Implement shopping cart',
-//     status: 'todo',
-//     assigneeId: 2,
-//   },
-//   {
-//     id: 3,
-//     projectId: 1,
-//     title: 'Add payment integration',
-//     status: 'todo',
-//     assigneeId: null,
-//   },
-//   {
-//     id: 4,
-//     projectId: 2,
-//     title: 'Create app icon',
-//     status: 'completed',
-//     assigneeId: 3,
-//   },
-//   {
-//     id: 5,
-//     projectId: 2,
-//     title: 'Setup push notifications',
-//     status: 'in-progress',
-//     assigneeId: 2,
-//   },
-//   {
-//     id: 6,
-//     projectId: 3,
-//     title: 'Build data visualization charts',
-//     status: 'in-progress',
-//     assigneeId: 1,
-//   },
-// ];
+export const tasks = [
+  {
+    id: 1,
+    projectId: 1,
+    title: 'Design user authentication flow',
+    status: 'in-progress',
+    assigneeId: 1,
+  },
+  {
+    id: 2,
+    projectId: 1,
+    title: 'Implement shopping cart',
+    status: 'todo',
+    assigneeId: 2,
+  },
+  {
+    id: 3,
+    projectId: 1,
+    title: 'Add payment integration',
+    status: 'todo',
+    assigneeId: null,
+  },
+  {
+    id: 4,
+    projectId: 2,
+    title: 'Create app icon',
+    status: 'completed',
+    assigneeId: 3,
+  },
+  {
+    id: 5,
+    projectId: 2,
+    title: 'Setup push notifications',
+    status: 'in-progress',
+    assigneeId: 2,
+  },
+  {
+    id: 6,
+    projectId: 3,
+    title: 'Build data visualization charts',
+    status: 'in-progress',
+    assigneeId: 1,
+  },
+];
 
-export const tasks = getManyTasks();
+// export const tasks = getManyTasks();
 
 export const comments = [
   {
